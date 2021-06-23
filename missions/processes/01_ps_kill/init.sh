@@ -4,19 +4,17 @@ _mission_init() {
 
   if command -v gcc >/dev/null
   then
+    CC=gcc
     if [ "$GSH_MODE" = DEBUG ]
     then
-      CC="gcc -std=c99 -Wall -Wextra -pedantic"
-    else
-      CC=gcc
+      CFLAGS="-std=c99 -Wall -Wextra -pedantic"
     fi
   elif command -v clang >/dev/null
   then
+    CC=clang
     if [ "$GSH_MODE" = DEBUG ]
     then
-      CC="clang -std=c99 -Wall -Wextra -pedantic"
-    else
-      CC=clang
+      CFLAGS="-std=c99 -Wall -Wextra -pedantic"
     fi
   elif command -v c99 >/dev/null
   then
@@ -24,13 +22,13 @@ _mission_init() {
   elif command -v cc >/dev/null
   then
     CC=cc
-  elif ! [ -e "$MISSION_DIR/deps.sh" ]
+  elif ! [ -e "$MISSION_DIR/deps.sh" ] || ! command -v my_ps >/dev/null
   then
     # FIXME
     echo "missing dummy mission!"
     return 1
-    mission_source "$MISSION_DIR/deps.sh" || return 1
   fi
+  mission_source "$MISSION_DIR/deps.sh" || return 1
 
   if [ -n "$CC" ]
   then
@@ -41,8 +39,7 @@ _mission_init() {
         exec 1>/dev/null
         exec 2>/dev/null
       fi
-      echo $CC "$MISSION_DIR/spell.c" -o "$GSH_TMP/$(gettext "spell")"
-      $CC "$MISSION_DIR/spell.c" -o "$GSH_TMP/$(gettext "spell")"
+      $CC $CFLAGS "$MISSION_DIR/spell.c" -o "$GSH_TMP/$(gettext "spell")"
     ) || { echo "compilation failed" >&2; return 1; }
   else
     cp "$MISSION_DIR/spell.sh" "$GSH_TMP/$(gettext "spell")"
@@ -57,4 +54,5 @@ set +o monitor  # do not monitor background processes
 # FIXME: for some unknown reason, this doesn't work if we start with this
 # mission directly!
 
-set +b; _mission_init
+# set +b 2>/dev/null    # POSIX, but not supported by zsh
+_mission_init
