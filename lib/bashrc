@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export HISTFILE="$GSH_CONFIG/history"
+export HISTSIZE=50000
+export HISTFILESIZE=50000
+
+# do not save consecutive duplicates in the history
+export HISTCONTROL="ignoredups"
+export HISTIGNORE=""
+
+# expand aliases even in non-interactive shells (when invoked with -c for
+# example)
+shopt -s expand_aliases
+
+# completion for (some) gsh commands
+complete -W 'check exit goal help index log reset stat welcome' gsh

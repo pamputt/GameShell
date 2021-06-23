@@ -75,6 +75,9 @@ msgid_plural    "%d missions skipped:"
 msgstr[0]       "%d mission skipped:"
 msgstr[1]       "%d missions skipped:"
 
+msgid   "AUTOMATICALLY GENERATED ON STARTUP -- DO NOT MODIFY"
+msgstr  "AUTOMATICALLY GENERATED ON STARTUP -- DO NOT MODIFY"
+
 #, sh-format
 msgid   "Congratulations, mission $MISSION_NB has been successfully completed!"
 msgstr  "Congratulations, mission $MISSION_NB has been successfully completed!"
@@ -174,6 +177,17 @@ msgstr  "The directory $GSH_CONFIG contains meta-data from a previous game.\n"
 msgid   "There are stopped jobs in your session.\n"
         "Those processes will be terminated.\n"
         "You can get the list of those jobs with\n"
+        "    $ jobs\n"
+        "Do you still want to quit? [y/n]"
+msgstr  "There are stopped jobs in your session.\n"
+        "Those processes will be terminated.\n"
+        "You can get the list of those jobs with\n"
+        "    $ jobs\n"
+        "Do you still want to quit? [y/n]"
+
+msgid   "There are stopped jobs in your session.\n"
+        "Those processes will be terminated.\n"
+        "You can get the list of those jobs with\n"
         "    $ jobs -s\n"
         "Do you still want to quit? [y/n]"
 msgstr  "There are stopped jobs in your session.\n"
@@ -197,6 +211,10 @@ msgstr  "Warning: this mission was initialized in a subshell.\n"
         "Run the command\n"
         "    $ gsh reset\n"
         "to make sure the mission is initialized properly."
+
+#, sh-format
+msgid   "Warning: unknown shell '$SHELL'."
+msgstr  "Warning: unknown shell '$SHELL'."
 
 msgid   "While you are waiting, a bat flies by..."
 msgstr  "While you are waiting, a bat flies by..."
