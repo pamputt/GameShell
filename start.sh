@@ -474,10 +474,11 @@ then
       RC_FILE=.zshrc
       ;;
     esac
-  exec $GSH_SHELL -c "GSH_ROOT=\"$GSH_ROOT\"
-                      . \"\$GSH_ROOT/lib/profile.sh\"
-                      . \"\$GSH_HOME/$RC_FILE\"
-                      $GSH_COMMAND"
+  exec $GSH_SHELL -c "export GSH_NON_INTERACTIVE=1
+                       GSH_ROOT=\"$GSH_ROOT\"
+                       . \"\$GSH_ROOT/lib/profile.sh\"
+                       . \"\$GSH_HOME/$RC_FILE\"
+                       $GSH_COMMAND"
 else
   exec $GSH_SHELL -i
 fi
