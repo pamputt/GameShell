@@ -15,6 +15,7 @@ case "$GSH_SHELL" in
     HISTFILE=$_HISTFILE
     unset _HISTFILE
     history -r "$HISTFILE"
+    history >/dev/null
     ;;
 
   *zsh)
