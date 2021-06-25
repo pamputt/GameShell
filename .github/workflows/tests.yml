@@ -4,7 +4,7 @@ jobs:
   test:
     strategy:
       matrix:
-        platform: [macos-latest]
+        platform: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout the GameShell repo
@@ -17,6 +17,13 @@ jobs:
       #   name: Install macOS deps
       #   run: |
       #     brew install coreutils pstree tree man-db
-      - name: Run the tests
+
+      - if: ${{ matrix.platform == 'ubuntu-latest' }}
+        name: Run the tests
         run: |
-            sh ./test-history.sh
+            SHELL=bash sh ./test-history.sh
+
+      - if: ${{ matrix.platform == 'macos-latest' }}
+        name: Run the tests
+        run: |
+            SHELL=zsh sh ./test-history.sh
