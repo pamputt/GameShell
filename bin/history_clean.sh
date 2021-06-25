@@ -13,8 +13,8 @@ case "$GSH_SHELL" in
   *bash)
     history -c    # clear history
     HISTFILE=$_HISTFILE
-    history -r
     unset _HISTFILE
+    history -r "$HISTFILE"
     ;;
 
   *zsh)
