@@ -1,3 +1,8 @@
+echo "SHELL=$SHELL"
+
+echo
+echo "======================================================="
+echo
 
 bash --version
 bash -c '
@@ -27,6 +32,8 @@ source ./bin/history_clean.sh
 echo ">>>fc -l"
 fc -l
 rm -f a b c A B C
+echo ">>> cat \$HISTFILE"
+cat "$HISTFILE"
 '
 
 echo
@@ -61,5 +68,7 @@ source ./bin/history_clean.sh
 echo ">>>fc -l"
 fc -l
 rm -f a b c A B C
+echo ">>> cat \$HISTFILE"
+cat "$HISTFILE"
 '
 
