@@ -23,6 +23,10 @@ echo ">>>add_cmd ls A"
 add_cmd ls A
 echo ">>>fc -l"
 fc -l
+echo ">>>add_cmd fc -l"
+add_cmd fc -l
+echo ">>>fc -l"
+fc -l
 echo ">>> history"
 history
 #  echo ">>>fc -l"

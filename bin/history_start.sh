@@ -15,8 +15,6 @@ case "$GSH_SHELL" in
     _HISTFILE=$HISTFILE
     HISTFILE="$GSH_TMP/tmp_history"
     history -c
-    history -s "dummy"
-    history -w "$HISTFILE"
     add_cmd() { history -s "$@" ; }
     ;;
   *zsh)
