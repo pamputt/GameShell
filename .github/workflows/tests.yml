@@ -19,5 +19,4 @@ jobs:
       #     brew install coreutils pstree tree man-db
       - name: Run the tests
         run: |
-            bash --version
-            zsh --version
+            sh ./test-history.sh
