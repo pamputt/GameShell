@@ -36,11 +36,11 @@ new: i18n/template.pot
 
 ## check that the auto.sh scripts work as expected
 check: clean
-	./make_tests.sh simple_check-en
+	./tests/make_tests.sh simple_check-en
 
 ## run all the test.sh and auto.sh scripts
 tests: clean
-	./make_tests.sh tests-en
+	./tests/make_tests.sh tests-en
 
 clean:
 	rm -rf i18n/*~ locale gameshell.tgz gameshell.sh gameshell-save.sh bin/boxes-data.awk

@@ -2,9 +2,16 @@
 
 cd "$(dirname "$0")/.."
 
-NAME="game shell (1)"
+NAME="tmp tests game shell (1)"
 
-rm -f "$NAME.sh" "$NAME-save.sh"
+clean() {
+  echo "CLEANING"
+  chmod -R +xrw "$NAME"*
+  rm -rf "$NAME"*
+}
+
+trap 'clean' SIGTERM SIGINT SIGHUP
+
 ./utils/archive.sh -at -N "$NAME"
 NB_MISSIONS=42
 
@@ -90,3 +97,6 @@ main() {
 }
 
 main "$@"
+ret_val=$?
+clean
+exit $ret_val
