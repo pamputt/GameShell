@@ -1,8 +1,8 @@
-# echo "SHELL=$SHELL"
+echo "SHELL=$SHELL"
 
-# echo
-# echo "======================================================="
-# echo
+echo
+echo "======================================================="
+echo
 
 # bash --version
 bash -c '
