@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ -z "$GSH_TMP" ]
 then
   export GSH_TMP=.
