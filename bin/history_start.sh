@@ -14,6 +14,7 @@ case "$GSH_SHELL" in
     history -a    # append unsaved commands to history file
     _HISTFILE=$HISTFILE
     HISTFILE="$GSH_TMP/tmp_history"
+    history -c
     add_cmd() { history -s "$@" ; }
     ;;
   *zsh)
