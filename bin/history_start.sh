@@ -15,7 +15,7 @@ case "$GSH_SHELL" in
     _HISTFILE=$HISTFILE
     HISTFILE="$GSH_TMP/tmp_history"
     history -c
-    add_cmd() { history -s "$@" ; history -n "$HISTFILE" ; history -r "$HISTFILE" ; }
+    add_cmd() { history -s "$@" ; history -w "$HISTFILE" ; }
     ;;
   *zsh)
     fc -p "$GSH_TMP/tmp_history" # this pushes the current history on a stack to start a new one
