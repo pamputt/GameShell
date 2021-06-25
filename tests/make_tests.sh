@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")/.."
 
-NAME="tmp tests game shell (1)"
+NAME="tmp tests game shell (1)¡"
 
 clean() {
   echo "CLEANING"
@@ -12,8 +12,8 @@ clean() {
 
 trap 'clean' SIGTERM SIGINT SIGHUP
 
-./utils/archive.sh -at -N "$NAME"
-NB_MISSIONS=42
+./utils/archive.sh -at -N "$NAME" missions/intermediate/02_alias_journal/
+NB_MISSIONS=1
 
 NB_TESTS=7
 gsh_test() {
