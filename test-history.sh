@@ -27,8 +27,8 @@ echo ">>>add_cmd ls C"
 add_cmd ls C
 echo ">>>fc -l"
 fc -l
-echo ">>>history"
-history
+echo ">>>fc -l"
+fc -l
 echo ">>> cat \$HISTFILE"
 cat "$HISTFILE"
 echo ">>>source ./bin/history_clean.sh"
