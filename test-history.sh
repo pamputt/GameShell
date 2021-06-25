@@ -21,14 +21,10 @@ source ./bin/history_start.sh
 echo "GSH_TMP=$GSH_TMP, HISTFILE=$HISTFILE"
 echo ">>>add_cmd ls A"
 add_cmd ls A
-#  echo ">>>add_cmd ls B"
-#  add_cmd ls B
-#  echo ">>>add_cmd ls C"
-#  add_cmd ls C
-#  echo ">>>fc -l"
-#  fc -l
-#  echo ">>> history"
-#  history
+echo ">>>fc -l"
+fc -l
+echo ">>> history"
+history
 #  echo ">>>fc -l"
 #  fc -l
 #  echo ">>> cat \$HISTFILE"
