@@ -18,9 +18,9 @@ fc -l
 touch A B C
 echo ">>>source ./bin/history_start.sh"
 source ./bin/history_start.sh
-#  echo "GSH_TMP=$GSH_TMP, HISTFILE=$HISTFILE"
-#  echo ">>>add_cmd ls A"
-#  add_cmd ls A
+echo "GSH_TMP=$GSH_TMP, HISTFILE=$HISTFILE"
+echo ">>>add_cmd ls A"
+add_cmd ls A
 #  echo ">>>add_cmd ls B"
 #  add_cmd ls B
 #  echo ">>>add_cmd ls C"
@@ -38,8 +38,6 @@ source ./bin/history_clean.sh
 echo ">>>fc -l"
 fc -l
 rm -f a b c A B C
-echo ">>> cat \$HISTFILE"
-cat "$HISTFILE"
 '
 
 # echo
