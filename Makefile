@@ -1,7 +1,7 @@
 LANGUAGES=$(wildcard i18n/*.po)
 LANGUAGES:=$(filter-out i18n/en.po, $(LANGUAGES))
-SH_FILES= start.sh lib/gsh.sh lib/profile.sh bin/*
-AWK_FILES=bin/_gsh_stat.awk
+SH_FILES= start.sh lib/gsh.sh lib/profile.sh scripts/*
+AWK_FILES=scripts/_gsh_stat.awk
 OTHER_FILES=
 
 SORT=--sort-output
@@ -43,7 +43,7 @@ tests: clean
 	./tests/make_tests.sh tests-en
 
 clean:
-	rm -rf i18n/*~ locale gameshell.tgz gameshell.sh gameshell-save.sh bin/boxes-data.awk
+	rm -rf i18n/*~ locale gameshell.tgz gameshell.sh gameshell-save.sh scripts/boxes-data.awk
 	rm -rf .bin .config .sbin .var World
 	rm -rf "game shell"*
 

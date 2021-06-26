@@ -23,6 +23,6 @@ export GSH_SBIN="$GSH_ROOT/.sbin"
 export TEXTDOMAINDIR="$GSH_ROOT/locale"
 export TEXTDOMAIN="gsh"
 
-# PATH=$PATH:"$GSH_ROOT/bin"
-PATH="$GSH_ROOT/bin":$PATH
+# PATH=$PATH:"$GSH_ROOT/scripts"
+PATH="$GSH_ROOT/scripts":$PATH
 

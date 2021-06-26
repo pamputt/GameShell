@@ -37,7 +37,7 @@ mission_source() {
     local _MISSION_DIR _TEXTDOMAIN _MISSION_NAME _PATH exit_status
     export MISSION_DIR TEXTDOMAIN MISSION_NAME
     _MISSION_DIR=$MISSION_DIR
-    MISSION_DIR=$(dirname "$(realpath "$FILENAME")")
+    MISSION_DIR=$(dirname "$(readlink-f "$FILENAME")")
     _TEXTDOMAIN=$TEXTDOMAIN
     TEXTDOMAIN=$(textdomainname "$MISSION_DIR")
     _MISSION_NAME=$MISSION_NAME
@@ -70,7 +70,7 @@ mission_source() {
   # before and after to echo a message when there are differences
   . save_environment.sh >"$env_before"
   _MISSION_DIR=$MISSION_DIR
-  MISSION_DIR=$(dirname "$(realpath "$FILENAME")")
+  MISSION_DIR=$(dirname "$(readlink-f "$FILENAME")")
   _TEXTDOMAIN=$TEXTDOMAIN
   TEXTDOMAIN=$(textdomainname "$MISSION_DIR")
   _MISSION_NAME=$MISSION_NAME
