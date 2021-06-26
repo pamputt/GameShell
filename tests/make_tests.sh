@@ -10,7 +10,7 @@ clean() {
   rm -rf "$NAME"*
 }
 
-trap 'clean' SIGTERM SIGINT SIGHUP
+trap 'clean' TERM INT HUP
 
 ./utils/archive.sh -at -N "$NAME"
 NB_MISSIONS=42

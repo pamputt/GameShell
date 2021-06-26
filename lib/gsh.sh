@@ -19,10 +19,10 @@
 # shellcheck source=lib/mission_source.sh
 . "$GSH_LIB/mission_source.sh"
 
-trap -- '_gsh_exit EXIT $?' EXIT
-trap -- '_gsh_exit TERM 15' SIGTERM
-trap -- '_gsh_exit HUP 2' SIGHUP
-# trap '_gsh_exit INT' SIGINT  # causes termination on ^C
+trap '_gsh_exit EXIT $?' EXIT
+trap '_gsh_exit TERM 15' TERM
+trap '_gsh_exit HUP 2' HUP
+# trap '_gsh_exit INT' INT  # causes termination on ^C
 
 
 # log an action to the missions.log file
