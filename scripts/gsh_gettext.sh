@@ -11,11 +11,15 @@ then
 export GSH_NO_GETTEXT=1
 
 gettext() {
-  echo "$@"
+  echo "$1"
+}
+
+ngettext() {
+  echo "$2"
 }
 
 eval_gettext() {
-  eval "echo \"$@\""
+  eval "echo \"$1\""
 }
 
 fi

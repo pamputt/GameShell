@@ -1,4 +1,3 @@
-#, fuzzy
 msgid   ""
 msgstr  "Content-Type: text/plain; charset=UTF-8\n"
         "Content-Transfer-Encoding: 8bit\n"
@@ -30,6 +29,10 @@ msgstr  ""
 
 #, sh-format
 msgid   "$MISSION_DIR/goal/en.txt"
+msgstr  ""
+
+#, sh-format
+msgid   "$MISSION_DIR/skip/en.txt"
 msgstr  ""
 
 #, sh-format
@@ -73,6 +76,9 @@ msgid   "%d mission skipped:"
 msgid_plural    "%d missions skipped:"
 msgstr[0]       ""
 msgstr[1]       ""
+
+msgid   "AUTOMATICALLY GENERATED ON STARTUP -- DO NOT MODIFY"
+msgstr  ""
 
 #, sh-format
 msgid   "Congratulations, mission $MISSION_NB has been successfully completed!"
@@ -131,6 +137,11 @@ msgid   "Error: unknown gsh command '$cmd'.\n"
         "Use one of the following commands:"
 msgstr  ""
 
+#, sh-format
+msgid   "Error: unknown shell '$SHELL'.\n"
+        "Run GameShell with either bash or zsh."
+msgstr  ""
+
 msgid   "Error: wrong password."
 msgstr  ""
 
@@ -157,6 +168,9 @@ msgstr  ""
 msgid   "Press Enter to continue."
 msgstr  ""
 
+msgid   "START OF COMMANDS HISTORY"
+msgstr  ""
+
 #, sh-format
 msgid   "Sorry, mission $MISSION_NB hasn't been completed."
 msgstr  ""
@@ -169,7 +183,7 @@ msgstr  ""
 msgid   "There are stopped jobs in your session.\n"
         "Those processes will be terminated.\n"
         "You can get the list of those jobs with\n"
-        "    $ jobs -s\n"
+        "    $ jobs\n"
         "Do you still want to quit? [y/n]"
 msgstr  ""
 
@@ -228,6 +242,9 @@ msgid   "cancelled"
 msgstr  ""
 
 msgid   "completed"
+msgstr  ""
+
+msgid   "days"
 msgstr  ""
 
 msgid   "failed"

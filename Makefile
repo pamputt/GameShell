@@ -1,7 +1,7 @@
 LANGUAGES=$(wildcard i18n/*.po)
 LANGUAGES:=$(filter-out i18n/en.po, $(LANGUAGES))
-SH_FILES= start.sh lib/gsh.sh lib/profile.sh bin/*
-AWK_FILES=bin/_gsh_stat.awk
+SH_FILES= start.sh  scripts/* lib/gsh.sh lib/bashrc lib/zshrc
+AWK_FILES=scripts/_gsh_stat.awk
 OTHER_FILES=
 
 SORT=--sort-output
@@ -37,30 +37,25 @@ new: i18n/template.pot
 ## check that the auto.sh scripts work as expected
 check: clean
 	./utils/archive.sh -at -N "game shell (1)"
-	echo 'gsh systemconfig; for _ in $$(seq 42); do gsh auto --abort < <(echo gsh); done; gsh stat' | ./"game shell (1).sh" -q
+	./"game shell (1).sh" -q -c 'gsh systemconfig; for _ in $$(seq 42); do gsh auto --abort < <(echo gsh); done; gsh stat'
 
 ## check that the auto.sh scripts work as expected, in verbose mode
 check-verbose: clean
 	./utils/archive.sh -at -N "game shell (1)"
-	echo 'gsh systemconfig; for _ in $$(seq 42); do gsh auto --abort; done; gsh stat' | ./"game shell (1).sh" -Dq
+	./"game shell (1).sh" -Dq -c 'gsh systemconfig; for _ in $$(seq 42); do gsh auto --abort; done; gsh stat'
 
 ## run all the test.sh and auto.sh scripts
-tests: clean
+tests-bash: clean
 	./utils/archive.sh -at -N "game shell (1)"
-	echo 'gsh systemconfig; for _ in $$(seq 42); do gsh goal|cat; gsh test --abort; gsh auto --abort; done; gsh stat' | ./"game shell (1).sh" -dq
+	./"game shell (1).sh" -Bdq -c 'gsh systemconfig; for _ in $$(seq 42); do gsh goal|cat; gsh test --abort; gsh auto --abort; done; gsh stat'
 
-## run all the test.sh and auto.sh scripts, in french
-tests-fr: clean
+## run all the test.sh and auto.sh scripts
+tests-zsh: clean
 	./utils/archive.sh -at -N "game shell (1)"
-	echo 'gsh systemconfig; for _ in $$(seq 42); do gsh goal|cat; gsh test --abort; gsh auto --abort; done; gsh stat' | ./"game shell (1).sh" -dqL fr
-
-## run all the test.sh and auto.sh scripts, in verbose mode
-tests-verbose: clean
-	./utils/archive.sh -at -N "game shell (1)"
-	echo 'gsh systemconfig; for _ in $$(seq 42); do gsh goal|cat; gsh test --abort; gsh auto --abort; done; gsh stat' | ./"game shell (1).sh" -RDq
+	./"game shell (1).sh" -Zdq -c 'gsh systemconfig; for _ in $$(seq 42); do gsh goal|cat; gsh test --abort; gsh auto --abort; done; gsh stat'
 
 clean:
-	rm -rf i18n/*~ locale gameshell.tgz gameshell.sh gameshell-save.sh bin/boxes-data.awk
+	rm -rf i18n/*~ locale gameshell.tgz gameshell.sh gameshell-save.sh scripts/boxes-data.awk
 	rm -rf .bin .config .sbin .var World
 	rm -rf "game shell"*
 

@@ -1,4 +1,4 @@
-GameShell : un "jeu" pour apprendre le shell Unix
+# GameShell : un "jeu" pour apprendre le shell Unix
 =================================================
 
 ![Illustration inspired by the game](art/illustration-small.png)
@@ -61,6 +61,21 @@ progression sera sauvegardée dans une nouvelle archive (nommée
 étiez arrêté.
 
 
+Si vous préférez ne pas exécuter des scripts étrangers sur votre machine,
+vous pouvez générer une image Docker avec :
+```sh
+$ mkdir GameShell; cd GameShell
+$ wget --quiet https://github.com/phyver/GameShell/releases/download/latest/Dockerfile
+$ docker build -t gsh .
+$ docker run -it gsh
+```
+Votre progression ne sera PAS sauvée lorsque vous quittez le jeu, et des
+options supplémentaires sont nécessaires si vous souhaitez lancer des
+programmes X depuis GameShell. Référez vous à [cette
+section](./doc/deps.md#running-GameShell-from-a-docker-container) du manuel
+d'utilisateur.
+
+
 Documentation
 -------------
 
@@ -110,3 +125,15 @@ Licence
 GameShell est distribué sous la licence [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 Merci de pointer vers ce dépôt si vous l'utilisez.
+
+GameShell est open source et son utilisation est gratuite. Une manière de
+reconnaitre le travail que cela à nécessité est d'envoyer un carte postale à
+
+```
+  Pierre Hyvernat
+  Laboratoire de Mathématiques, CNRS UMR 5127
+  Université de Savoie
+  73376 Le Bourget du Lac
+  FRANCE
+```
+

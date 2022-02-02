@@ -53,6 +53,7 @@ $GSH_ROOT/missions/.../MISSION_NAME
 ├── sbin
 │   ├── ...
 │   └── ...
+├── skip.txt
 ├── static.sh                   ALMOST REQUIRED
 ├── test.sh
 ├── treasure.sh
@@ -212,6 +213,65 @@ sourced each time the player runs `gsh goal`.
 `init.sh`, not by `goal.sh`.)
 
 
+#### Note on formatting goal files
+
+Goal files (and treasure messages, see below) are "reflowed" to somewhat fill
+the terminal width, with room to spare for the ASCII-art embellishments.
+
+Those text files should follow the following conventions
+
+  - use UTF-8 encoding for accentuated letters,
+  - trailing spaces at the end of lines *do not end a paragraph*,
+  - empty lines *do end a paragraph*,
+  - a non empty line ending with something different from a space or tab *do
+    end a paragraph*.
+
+Indentation of the first line of a paragraph is used to indent the whole
+paragraph, and list markers also indent the following paragraph.
+
+A line starting with at least 2 spaces **and** containing a sequence of 2 (or
+more) spaces *after* a non space character is "protected". It is output
+without any processing. That makes it possible to format small tables. Those
+lines are best kept under 50 characters wide.
+
+The above example could have been written as (using `~` to indicate trailing spaces)
+```
+Mission goal
+============
+
+Find a frog in~
+the swamp.
+
+
+Useful commands
+===============
+
+cd PLACE
+  Move to the~
+given place,~
+    if accessible~
+from you current location.
+```
+If reflowed at width 25, this gives
+```
+Mission goal
+============
+
+Find a frog in the swamp.
+
+
+Useful commands
+===============
+
+cd PLACE
+  Move to the given~
+  place, if accessible~
+  from you current~
+  location.
+```
+
+
+
 ### `init.sh`
 
 This file is sourced whenever the mission is started. It is typically used to
@@ -330,6 +390,15 @@ the mission is successfully completed. Note that if this file finished with a
 non 0 return value, the `treasure.sh` file is *neither sourced nor installed*.
 It can be used to avoid problems when some `treasure.sh` has some
 dependencies.
+
+
+### `skip.txt`
+
+If the file `skip.txt` is present, it marks the mission as "optional": the
+command `gsh skip` will be available without password.
+
+If the file is non empty, it is displayed just after the goal of the mission
+when using `gsh goal`.
 
 
 ### `bin/` (optional)

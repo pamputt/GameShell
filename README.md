@@ -37,7 +37,7 @@ dependencies: these missions will be skipped if the dependencies are not met.
 On Debian or Ubuntu, run the following command to install all game and mission
 dependencies.
 ```sh
-$ sudo apt install gettext-base man-db psmisc nano tree bsdmainutils x11-apps gettext
+$ sudo apt install gettext man-db procps psmisc nano tree bsdmainutils x11-apps wget
 ```
 Check the [user manual](doc/user_manual.md) to see how to install the game
 dependencies on other systems (macOS, BSD, ...).
@@ -56,6 +56,20 @@ the game directly.
 Note that when you quit the game (with `control-d` or the command `gsh exit`)
 your progression will be saved in a new archive (called `GameShell-save.sh`).
 Run this archive to resume the game where you left it.
+
+
+If you prefer not running foreign shell scripts on your computer, you can
+generate a Docker image with the following:
+```sh
+$ mkdir GameShell; cd GameShell
+$ wget --quiet https://github.com/phyver/GameShell/releases/download/latest/Dockerfile
+$ docker build -t gsh .
+$ docker run -it gsh
+```
+The game will NOT be saved when you exit, and additional flags are required if
+you want to run X programs from inside GameShell. Refer to [this
+section](./doc/deps.md#running-GameShell-from-a-docker-container) of the user
+manual.
 
 
 Documentation
@@ -104,3 +118,15 @@ Licence
 GameShell is released under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 Please link to this repository if you use GameShell.
+
+GameShell is open source and free to use. One way you can acknowledge the work
+it required is by sending an actual postcard to
+
+```
+  Pierre Hyvernat
+  Laboratoire de Mathématiques, CNRS UMR 5127
+  Université de Savoie
+  73376 Le Bourget du Lac
+  FRANCE
+```
+

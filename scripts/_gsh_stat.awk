@@ -1,7 +1,7 @@
 #!/usr/bin/awk -f
 
 function _(s) {
-    sprintf("gettext '%s'", s) | getline msg;
+    sprintf(". gsh_gettext.sh; gettext '%s'", s) | getline msg;
     if (!msg) {
         return s;
     } else {
@@ -10,7 +10,7 @@ function _(s) {
 }
 
 function _n(sing, plur, nb) {
-    sprintf("ngettext '%s' '%s' %d", sing, plur, nb) | getline msg;
+    sprintf(". gsh_gettext.sh; ngettext '%s' '%s' %d", sing, plur, nb) | getline msg;
     if (!msg) {
         return s;
     } else {
@@ -20,7 +20,7 @@ function _n(sing, plur, nb) {
 
 function human_time(seconds) {
     if (seconds >= 24*3600) {
-        return sprintf("%.1fd", seconds/(24*3600))
+        return sprintf("%.1f %s", seconds/(24*3600), _("days"))
     }
     hours = int(seconds / 3600);
     seconds = seconds % 3600;

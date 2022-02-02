@@ -7,7 +7,7 @@ _mission_init() (
   chmod +x "$GSH_TMP/test-proc-name"
   "$GSH_TMP/test-proc-name" &
   PID=$!
-  name=$(ps -cp $PID | grep $PID | grep -v sh)
+  name=$(my_ps $PID | grep $PID | grep -v sh | grep "test-proc-name")
   kill -9 $PID
   if [ -z "$name" ]
   then
@@ -16,7 +16,7 @@ _mission_init() (
   elif ! command -v ps >/dev/null
   then
     echo "$(eval_gettext "The command 'ps' is required for mission \$MISSION_NAME.
-(Debian / Ubuntu: install package 'psproc')")"
+(Debian / Ubuntu: install package 'procps')")"
     return 1
   fi
   return 0

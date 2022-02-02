@@ -1,10 +1,13 @@
-#, fuzzy
 msgid   ""
 msgstr  "Content-Type: text/plain; charset=UTF-8\n"
         "Content-Transfer-Encoding: 8bit\n"
 
 # path for the text file containing the goal
 msgid   "$MISSION_DIR/goal/en.txt"
+msgstr  ""
+
+# path for the text file containing the skip message
+msgid   "$MISSION_DIR/skip/en.txt"
 msgstr  ""
 
 # path for the text file containing the treasure message
@@ -16,7 +19,7 @@ msgstr  ""
 
 #, sh-format
 msgid   "The command 'ps' is required for mission $MISSION_NAME.\n"
-        "(Debian / Ubuntu: install package 'psproc')"
+        "(Debian / Ubuntu: install package 'procps')"
 msgstr  ""
 
 #, sh-format

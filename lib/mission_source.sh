@@ -18,6 +18,13 @@
 mission_source() {
   local FILENAME
   FILENAME=$1
+
+  if ! [ -e "$FILENAME" ]
+  then
+    echo "mission_source: no such file or directory: $FILENAME" >&2
+    return 1
+  fi
+
   # the function corresponding to the file name:
   #   static.sh => _mission_static
   #   check.sh => _mission_check
@@ -37,7 +44,7 @@ mission_source() {
     local _MISSION_DIR _TEXTDOMAIN _MISSION_NAME _PATH exit_status
     export MISSION_DIR TEXTDOMAIN MISSION_NAME
     _MISSION_DIR=$MISSION_DIR
-    MISSION_DIR=$(dirname "$(realpath "$FILENAME")")
+    MISSION_DIR=$(dirname "$(readlink-f "$FILENAME")")
     _TEXTDOMAIN=$TEXTDOMAIN
     TEXTDOMAIN=$(textdomainname "$MISSION_DIR")
     _MISSION_NAME=$MISSION_NAME
@@ -50,11 +57,11 @@ mission_source() {
     MISSION_NAME=$_MISSION_NAME
     MISSION_DIR=$_MISSION_DIR
     PATH=$_PATH
-    unset -f "$MISSION_FN"
+    unset -f "$MISSION_FN" 2>/dev/null      # zsh complains if we try to unset a non existing function
     return $exit_status
   fi
 
-  local _MISSION_DIR _TEXTDOMAIN _MISSION_NAME _PATH exit_status en_before env_after
+  local _MISSION_DIR _TEXTDOMAIN _MISSION_NAME _PATH exit_status env_before env_after
   export MISSION_DIR TEXTDOMAIN MISSION_NAME
   echo "    GSH: sourcing \$GSH_ROOT/${FILENAME#$GSH_ROOT/}" >&2
   _MISSION_DIR=""  # otherwise, it appears in the environment!
@@ -68,9 +75,9 @@ mission_source() {
 
   # otherwise, record the environment (variables, functions and aliases)
   # before and after to echo a message when there are differences
-  . save_environment.sh >"$env_before"
+  . print_current_environment.sh >"$env_before"
   _MISSION_DIR=$MISSION_DIR
-  MISSION_DIR=$(dirname "$(realpath "$FILENAME")")
+  MISSION_DIR=$(dirname "$(readlink-f "$FILENAME")")
   _TEXTDOMAIN=$TEXTDOMAIN
   TEXTDOMAIN=$(textdomainname "$MISSION_DIR")
   _MISSION_NAME=$MISSION_NAME
@@ -83,7 +90,7 @@ mission_source() {
   MISSION_NAME=$_MISSION_NAME
   MISSION_DIR=$_MISSION_DIR
   PATH=$_PATH
-  . save_environment.sh | grep -v "$MISSION_FN" > "$env_after"
+  . print_current_environment.sh | grep -v "$MISSION_FN" > "$env_after"
 
   if ! cmp -s "$env_before" "$env_after"
   then
@@ -93,7 +100,7 @@ mission_source() {
   fi
 
   rm -f "$env_before" "$env_after"
-  unset -f "$MISSION_FN"
+  unset -f "$MISSION_FN" 2>/dev/null
   return $exit_status
 }
 
